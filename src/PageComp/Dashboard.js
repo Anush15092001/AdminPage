@@ -6,7 +6,7 @@ import Login from "../Pages/Login";
 
 function Dashboard({toogle,settoggle}){
     return(
-        <div className="w-full" >
+        <div className="w-full overflow-hidden" >
              <Navbar toogle={toogle} settoggle={settoggle}/>
         </div>
     )

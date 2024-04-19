@@ -50,23 +50,43 @@ function App() {
        </Routes> 
     </div>
     :
+    // <div className="grid grid-cols-1 sm:grid-cols-1">
+    // <div  className="flex flex-row h-screen w-screen overflow-hidden">
+    //   <div className=""> 
+    //     <Sidebar toogle={toogle} />
+    //   </div>
+    //   <div className="h-screen w-screen overflow-y-auto"> 
+    //   <div className="overflow-hidden">
+    //     <Dashboard toogle={toogle} settoggle={settoggle} />  
+    //   </div>
+    //     <Routes>
+    //       <Route path="/dashboard" element={<Dash  toogle={toogle}/>} />
+    //       <Route path="/calender" element={<Calender toogle={toogle}/>} />
+    //       <Route path="/forms" element={<Forms toogle={toogle}/>} />
+    //       <Route path="/profile" element={<Profile toogle={toogle}/>} />
+    //       <Route path="/tasks" element={<Tasks toogle={toogle}/>} />
+    //     </Routes>
+    //     </div>
+    //     </div>
+    // </div>)}
     <div className="grid grid-cols-1 sm:grid-cols-1">
-    <div  className="flex flex-row h-screen w-screen overflow-hidden">
-      <div className=""> 
+      <div className="flex flex-row h-screen w-screen overflow-hidden">
         <Sidebar toogle={toogle} />
+        <div className="h-screen w-screen overflow-y-auto">
+          <div className="">
+          <Dashboard toogle={toogle} settoggle={settoggle} />
+            <Routes>
+              <Route path="/dashboard" element={<Dash toogle={toogle} settoggle={settoggle}/>} />
+              <Route path="/calendar" element={<Calender toogle={toogle} />} />
+              <Route path="/forms" element={<Forms toogle={toogle} />} />
+              <Route path="/profile" element={<Profile toogle={toogle}/>} />
+              <Route path="/tasks" element={<Tasks toogle={toogle} />} />
+            </Routes>
+          </div>
+        </div>
       </div>
-      <div className="h-screen w-screen overflow-hidden"> 
-        <Dashboard toogle={toogle} settoggle={settoggle}/>  
-        <Routes>
-          <Route path="/dashboard" element={<Dash  toogle={toogle}/>} />
-          <Route path="/calender" element={<Calender toogle={toogle}/>} />
-          <Route path="/forms" element={<Forms toogle={toogle}/>} />
-          <Route path="/profile" element={<Profile toogle={toogle}/>} />
-          <Route path="/tasks" element={<Tasks toogle={toogle}/>} />
-        </Routes>
-        </div>
-        </div>
-    </div>)}
+    </div>
+    )}
     </>
   );
 }

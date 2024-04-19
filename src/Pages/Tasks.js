@@ -1,61 +1,117 @@
-import React, { useState,useEffect } from "react";
-import {Space,Tag,Table} from "antd";
-function Tasks(){
-    const [data,setdata]=useState([]);
+// 
+import React, { useState, useEffect } from "react";
+import { Table, Input ,Button,Modal, Form, Input as AntInput} from "antd";
+
+function Tasks() {
+    const [data, setData] = useState([]);
+    const [search, setSearch] = useState("");
+    const [modalVisible, setModalVisible] = useState(false);
+    const [editdata,setEditdata]=useState([])
+
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products`)
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            setdata(data);
-          });
-      }, []);
-      const columns = [
+            .then((res) => res.json())
+            .then((data) => setData(data));
+    }, []);
+
+    const columns = [
         {
-          title: 'Product Name',
-          dataIndex: 'title',
-          key: 'title',
-          render: (text) => <a>{text}</a>,
+            title: "ID",
+            dataIndex: "id",
+            key: "id"
         },
         {
-          title: 'Catogery',
-          dataIndex: 'category',
-          key: 'category',
+          title: "Title",
+          dataIndex: "title",
+          key: "title"
+      },
+        {
+            title: "Category",
+            dataIndex: "category",
+            key: "category"
         },
         {
-          title: 'Ratings',
-          dataIndex: 'rate',
-          key: 'rate',
-
+          title: "Rating",
+          dataIndex: "rating",
+          key: "rating",
+          render: (rating) => `${rating.rate} stars (${rating.count} reviews)`
+      },
+        {
+            title: "Price",
+            dataIndex: "price",
+            key: "price"
         },
         {
-            title: 'Reviews',
-            dataIndex: 'count',
-            key: 'count',
-            
-          },
-          {
-            title: 'Price',
-            dataIndex: 'price',
-            key: 'price',
-            
-          },
-      ];
-      const tabledata=[(data.map((row)=>{
-          
+          title: "Actions",
+          key: "actions",
+          render: (text, record) => (
+              <div className="flex gap-2">
+                  <Button type="primary" className="bg-blue-500 hover:bg-blue-200 text-white" onClick={() => handleEdit(record)} >Edit</Button>
+                  <Button type="danger" className="bg-red-500 hover:bg-red-300 text-white" onClick={() => handleDelete(record.id)}>Delete</Button>
+              </div>
+          )
+      }
 
+    ];
+    const handleDelete = (productId) => {
+      fetch(`https://fakestoreapi.com/products/${productId}`, {
+          method: 'DELETE'
+      })
+      .then(() => {
+          setData(data.filter(product => product.id !== productId));
+      })
+      .catch(error => console.error('Error deleting product:', error));
+  }
 
-      }))]
-    return(
-        <div>
-            <div >
-                <div className="p-4 border border-gray-500" >
-                    <Table columns={columns} dataSource={data} />
-                </div>
-            </div>
-        </div>
-    )
+  const handleEdit = (record) => {
+      setModalVisible(true);
+  }
+
+  const handleEditChange = (items) => {
+    const name = items.target.name;
+    const value = items.target.value;
+    setEditdata(values => ({...values, [name]: value}));
+}
+
+    const handleChange = (value) => {
+        setSearch(value);
+    }
+
+    const filtered = data.filter((prod) =>
+        prod.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    return (
+      <div className="mt-[50px] mx-auto p-4 sm:w-full md:w-full lg:w-3/2 ">
+      <div className="mb-4">
+          <Input placeholder="Search For Products" onChange={(e) => handleChange(e.target.value)} className="w-full sm:w-64 rounded rounded-lg " />
+      </div>
+      <div className="overflow-x-auto">
+          <Table columns={columns} dataSource={filtered} scroll={{ x: 100 }} className="shadow-lg rounded-lg" />
+      </div>
+      <Modal
+                title="Edit Product Details"
+                visible={modalVisible}
+                onCancel={() => setModalVisible(false)}
+                footer={null}
+            >
+                <Form>
+                    <Form.Item label="Product ID">
+                        <AntInput name="id" onChange={(e) => handleEditChange(e.target.value)} />
+                    </Form.Item>
+                    <Form.Item label="Product Name">
+                        <AntInput name="title" onChange={(e) => handleEditChange(e.target.value)} />
+                    </Form.Item>
+                    <Form.Item label="Product Description">
+                        <AntInput name="title" onChange={(e) => handleEditChange(e.target.value)} />
+                    </Form.Item>
+                    <Form.Item label="Product Name">
+                        <AntInput name="title" onChange={(e) => handleEditChange(e.target.value)} />
+                    </Form.Item>
+                </Form>
+            </Modal>
+  </div>
+    );
 }
 
 export default Tasks;
