@@ -112,8 +112,8 @@ function Dash(toogle){
    }
     return (
       <div className="m-2 grid md:grid-cols-1 sm:grid-cols-1 bg-scroll ">
-      <div className="flex gap-2 mt-[70px]">
-      <div className="w-full h-[500px] border border-gray-500 shadow-lg rounded rounded-lg ">
+      <div className="flex gap-2 flex-col md:flex-row sm:flex-col overflow-hidden">
+      <div className="w-screen h-[500px] border border-gray-500 shadow-lg rounded rounded-lg ">
       <Line className="flex justify-center mt-2"
         options={options} 
         data={{
@@ -130,7 +130,7 @@ function Dash(toogle){
         }} 
       />
     </div>
-    <div className="w-full h-full grid grid-cols-1 border border-gray-500 shadow-lg rounded-lg">
+    <div className="w-screen h-[500px] border border-gray-500 shadow-lg rounded rounded-lg">
       <Doughnut className="place-items-center mt-2"
         options={donoptions}
         data={{

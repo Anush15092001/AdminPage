@@ -13,7 +13,7 @@ function Navbar({ toogle, settoggle }) {
     };
     return (
         <div className="w-full">
-            <header className="fixed top-0 z-50 w-full h-[60px] bg-gray-800 flex justify-between items-center px-4 sm:px-6 md:px-8">
+            <header className="fixed top-0 z-50 sm:relative w-full h-[60px] bg-gray-800 flex justify-between items-center px-4 sm:px-6 md:px-8">
                 <div className="flex items-center">
                     <FaBars size={30} color="white" onClick={() => settoggle(!toogle)} />
                     <div className="flex items-center ml-4">
