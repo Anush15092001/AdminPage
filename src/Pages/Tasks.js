@@ -1,8 +1,8 @@
 // 
 import React, { useState, useEffect } from "react";
-import { Table, Input ,Button,Modal, Form, Input as AntInput} from "antd";
+import { Table, Input ,Button,Modal, Form, Input as AntInput, AutoComplete} from "antd";
 
-function Tasks() {
+function Tasks(toogle) {
     const [data, setData] = useState([]);
     const [search, setSearch] = useState("");
     const [modalVisible, setModalVisible] = useState(false);
@@ -83,20 +83,38 @@ function Tasks() {
     const filtered = data.filter((prod) =>
         prod.title.toLowerCase().includes(search.toLowerCase())
     );
-   console.log(edit)
-   console.log(editdata)
 
    const handleAdd =()=>{
       setaddModalVisible(true);
    }
+   const addform = {
+    id:`${editdata.id}`,
+    title:`${editdata.title}`,
+    description:`${editdata.description}`,
+    category:`${editdata.category}`,
+    image:`${editdata.image}`,
+    rating:{
+        rate:`${editdata.rate}`,
+        count:`${editdata.count}`
+    }
+}
+console.log(addform)
+
+   const handleSubmit=()=>{
+    setaddModalVisible(false)
+    setData([...data, addform]);   
+    console.log(data)
+   }
+
     return (
-      <div className="mt-[50px] mx-auto p-4 sm:w-full md:w-full lg:w-3/2 ">
-      <div className="flex justify-around mb-4">
-          <Input placeholder="Search For Products" onChange={(e) => handleChange(e.target.value)} className="w-full sm:w-64 rounded rounded-lg " />
-          <Button type="primary" className="h-[50px] font-bold text-lg" onClick={handleAdd}>Add Products</Button>
+        
+      <div className={`${toogle ? "md:left-0" : "w-full"} mt-[50px] xxs:mt-[80px] fixed mx-auto p-4 sm:w-full md:w-screen lg:w-3/2 `}>
+      <div className="flex justify-around mb-4 gap-2">
+          <Input placeholder="Search For Products" onChange={(e) => handleChange(e.target.value)} className="w-full md:w-96 sm:w-64 rounded rounded-lg " />
+          <Button type="primary" className="w-full md:w-84 sm:w-64  h-[50px] font-bold text-lg" onClick={handleAdd}>Add Products</Button>
       </div>
       <div className="overflow-x-auto">
-          <Table columns={columns} dataSource={filtered} scroll={{ x: 100 }} className="shadow-lg rounded-lg" />
+          <Table columns={columns} dataSource={filtered} scroll={{ x: 100,y:380}} className="shadow-lg rounded-lg" />
       </div>
       <Modal
                 title="Edit Product Details"
@@ -106,31 +124,31 @@ function Tasks() {
             >
                 <Form  className=" grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 md:grid-cols-1 max-w-xl md:max-w-2xl w-full" layout="vertical">
                     <Form.Item label="Product ID">            
-                    <AntInput name="id" value={edit.id} onChange={handleEditChange} />
+                    <AntInput value={edit.id} onChange={(e) => setEditdata({...edit, id: e.target.value})} />
                     </Form.Item>
                     <Form.Item label="Product Name">
-                        <AntInput name="title" value={(edit.title)} onChange={handleEditChange} />
+                        <AntInput value={edit.title} onChange={(e) => setEditdata({...edit, title: e.target.value})} />
                     </Form.Item>
                     <Form.Item label="Description">
-                        <AntInput name="desc" value={edit.description} onChange={handleEditChange} />
+                        <AntInput  value={edit.description} onChange={(e) => setEditdata({...edit, description: e.target.value})}/>
                     </Form.Item>
                     <Form.Item label="Category">
-                        <AntInput name="category" value={edit.category} onChange={handleEditChange} />
+                        <AntInput  value={edit.category} onChange={(e) => setEditdata({...edit, category: e.target.value})}/>
                     </Form.Item>
                     <Form.Item label="Price">
-                        <AntInput name="price"  value={edit.price} onChange={ handleEditChange} />
+                        <AntInput  value={edit.price} onChange={(e) => setEditdata({...edit, price: e.target.value})} />
                     </Form.Item>
                     <Form.Item label="Image Url">
-                        <AntInput name="img"  value={edit.image} onChange={ handleEditChange} />
+                        <AntInput value={edit.image} onChange={(e) => setEditdata({...edit, image: e.target.value})}/>
                     </Form.Item>
                     <Form.Item label="Ratings" />
                     <Form.Item label="Stars">
-                        <AntInput name="price"  value={edit.rating} onChange={ handleEditChange} />
+                        <AntInput value={edit.rating} onChange={(e) => setEditdata({...edit, rate: e.target.value})} />
                     </Form.Item>
                     <Form.Item label="No of People Reviewd">
-                        <AntInput name="price"  value={edit.rating} onChange={ handleEditChange} />
+                        <AntInput   value={edit.rating} onChange={(e) => setEditdata({...edit, count: e.target.value})} />
                     </Form.Item>
-                    <Button type="primary" visible={modalVisible} onClick={() => setModalVisible(false)} >Submit</Button>
+                    <Button type="primary" visible={modalVisible} onClick={() =>handleSubmit} >Submit</Button>
                 </Form>
             </Modal>
             <Modal
@@ -144,10 +162,10 @@ function Tasks() {
                     <AntInput name="id" value={editdata.id} onChange={handleEditChange} />
                     </Form.Item>
                     <Form.Item label="Product Name">
-                        <AntInput name="title" value={(editdata.title)} onChange={handleEditChange} />
+                        <AntInput name="title" value={editdata.title} onChange={handleEditChange} />
                     </Form.Item>
                     <Form.Item label="Description">
-                        <AntInput name="desc" value={editdata.desc} onChange={handleEditChange} />
+                        <AntInput name="description" value={editdata.description} onChange={handleEditChange} />
                     </Form.Item>
                     <Form.Item label="Category">
                         <AntInput name="category" value={editdata.category} onChange={handleEditChange} />
@@ -156,16 +174,16 @@ function Tasks() {
                         <AntInput name="price"  value={editdata.price} onChange={ handleEditChange} />
                     </Form.Item>
                     <Form.Item label="Image Url">
-                        <AntInput name="img"  value={editdata.image} onChange={ handleEditChange} />
+                        <AntInput name="image"  value={editdata.image} onChange={ handleEditChange} />
                     </Form.Item>
                     <Form.Item label="Ratings" />
                     <Form.Item label="Stars">
-                        <AntInput name="rate"  value={editdata.rating} onChange={ handleEditChange} />
+                        <AntInput name="rate"  value={editdata.rate} onChange={ handleEditChange} />
                     </Form.Item>
                     <Form.Item label="No of People Reviewd">
-                        <AntInput name="count"  value={editdata.rating} onChange={ handleEditChange} />
+                        <AntInput name="count"  value={editdata.count} onChange={ handleEditChange} />
                     </Form.Item>
-                    <Button type="primary" visible={modaladdVisible} onClick={() => setaddModalVisible(false)} >Submit</Button>
+                    <Button type="primary" visible={modaladdVisible} onClick={handleSubmit} >Submit</Button>
                 </Form>
             </Modal>
   </div>

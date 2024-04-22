@@ -21,14 +21,14 @@ function Navbar({ toogle, settoggle }) {
                         <h3 className="text-white text-xl font-bold ml-2">Nichi-IN Software Solutions</h3>
                     </div>
                 </div>
-                <div className="relative">
+                <div className="relative xxs:absoulte">
                     <button className="text-white relative" onClick={toggleDropdown}>
                         <CgProfile size={40} color="white" />
                         {dropdown && (
                             <div className="absolute top-full right-0 mt-2 w-32 bg-gray-800 rounded-lg py-1">
                                 <ul className="text-white">
                                     <li className="font-bold"><Link to="#">Profile</Link></li>
-                                    <li className="font-bold"><Link to="/login">Logout</Link></li>
+                                    <li className="font-bold"><Link to="/">Logout</Link></li>
                                 </ul>
                             </div>
                         )}

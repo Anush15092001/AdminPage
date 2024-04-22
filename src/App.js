@@ -25,7 +25,7 @@ function App() {
   }
   useEffect(()=>{
     const pathName = path.pathname;
-    if(pathName=="/login")
+    if(pathName=="/")
     {
       setLogin(true)
     }
@@ -44,29 +44,30 @@ function App() {
     {(isLogin ? 
     <div>
        <Routes>
-       <Route path="/login" element={<Login input={input}/>} />
+       <Route path="/" element={<Login input={input}/>} />
        <Route path="/signup" element={<SignUp input={input} handleChange={handleChange}/>} />
        <Route path="/forgotpassword" element={<Forgot input={input} handleChange={handleChange} />} />
        </Routes> 
     </div>
     :
     <div className="grid grid-cols-1 sm:grid-cols-1">
-      <div className="flex flex-row h-screen w-screen overflow-hidden sm:overflow-x-auto">
-        <Sidebar toogle={toogle} />
-        <div className="h-screen w-screen overflow-y-auto">
-          <div className="">
+    <div className="flex flex-row h-screen w-screen overflow-hidden sm:overflow-x-auto">
+      <Sidebar className="z-10" toogle={toogle} /> 
+      <div className="h-screen w-screen overflow-y-auto">
+        <div className="">
           <Dashboard toogle={toogle} settoggle={settoggle} />
-            <Routes>
-              <Route path="/dashboard" element={<Dash toogle={toogle} settoggle={settoggle}/>} />
-              <Route path="/calendar" element={<Calender toogle={toogle} />} />
-              <Route path="/forms" element={<Forms toogle={toogle} />} />
-              <Route path="/profile" element={<Profile toogle={toogle}/>} />
-              <Route path="/tasks" element={<Tasks toogle={toogle} />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/dashboard" element={<Dash toogle={toogle} settoggle={settoggle}/>} />
+            <Route path="/calendar" element={<Calender toogle={toogle} />} />
+            <Route path="/forms" element={<Forms toogle={toogle} />} />
+            <Route path="/profile" element={<Profile toogle={toogle}/>} />
+            <Route path="/tasks" element={<Tasks toogle={toogle} />} />
+          </Routes>
         </div>
       </div>
     </div>
+  </div>
+  
     )}
     </>
   );

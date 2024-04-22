@@ -12,6 +12,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    screens: {
+      'xxs': '350px', // min-width
+      'sm':'680px',
+      'md':'1280px',
+      'lg':'1800px'
+    },
     outline: {
       blue: ['2px solid #0000ff', '1px'],
     },

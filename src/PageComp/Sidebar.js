@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function Sidebar({toogle}){
     return(
-        <div className={`${toogle ? "sm:overflow-visible" : "hidden"} shadow-lg  bg-gray-800 mt-0 sm:w-[250px] h-full`}>
+        <div className={`${toogle ? "" : "hidden"} shadow-lg bg-gray-800 mt-0 sm:w-[250px] h-full lg:relative xxs:fixed xxs:top-14 md:relative sm:fixed md:top-0 sm:top-10 left-0 z-30`}>
         <div className="mt-8">
         <div className="text-center">
             <h3 className="text-white font-bold">MENU</h3>
