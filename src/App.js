@@ -33,7 +33,7 @@ function App() {
   }
   useEffect(()=>{
     const pathName = path.pathname;
-    if(pathName=="/")
+    if(pathName==="/")
     {
       setLogin(true)
     }
