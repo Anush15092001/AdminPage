@@ -2,8 +2,6 @@ import React, { useState,useEffect } from "react";
 
 
 const Details=({id})=>{
-    console.log("Details page")
-    console.log(id)
     const[data,setData]=useState([])
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/${id}`)
@@ -16,7 +14,7 @@ const Details=({id})=>{
                 <>
                     <div className="flex md:flex-row lg:flex-row sm:flex-col xxs:flex-col mt-[100px] m-6 border rounded-lg  p-4">
                     <div className=" mt-4 px-4 md:w-1/2 sm:w-full ">
-                        <img className="border" src={data.image} style={{width:600}} />
+                        <img className="border" src={data.image} style={{width:600}} alt="" />
                     </div>
                     <div className="px-5 md:w-1/2 sm:w-full mt-6">
                         <div>

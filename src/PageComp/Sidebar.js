@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../index.css"
-import { LuLayoutDashboard } from "react-icons/lu";
-import { FaTasks } from "react-icons/fa";
-import { SiGoogleforms } from "react-icons/si";
-import { ImProfile } from "react-icons/im";
-import { FaRegCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import routes from "../routers";
 

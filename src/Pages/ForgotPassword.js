@@ -10,7 +10,7 @@ function Forgot(input){
         setforgotdetails(values => ({...values, [name]: value}))
       }
     return(
-        <div className="bg-gray-50 flex justify-center  min-h-screen">
+        <div className="bg-gray-200 flex justify-center  min-h-screen">
         <div className=" grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 md:grid-cols-1 gap-4 max-w-xl md:max-w-2xl w-full">
         <div className="mt-4"> 
            <p className="text-black font-bold text-center text-3xl ">NICHI-IN SOFTWARE SOLUTIONS</p>

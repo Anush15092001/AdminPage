@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./PageComp/Navbar";
 import "./index.css";
 import Sidebar from "./PageComp/Sidebar";
-import routes from "./routers";
-import { Routes, Route, Navigate,useLocation } from "react-router-dom";
+import { Routes, Route,useLocation } from "react-router-dom";
 import Dashboard from "./PageComp/Dashboard";
 import Calender from "./Pages/Calendar";
 import Forms from "./Pages/Forms";
@@ -20,7 +18,6 @@ function App() {
   const path = useLocation();
   const [isLogin,setLogin] = useState(true);
   const [input,setInput]=useState([]);
-  const [id,setId]=useState([]);
   const [data,setData]=useState([])
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products`)
@@ -40,10 +37,10 @@ function App() {
     {
       setLogin(true)
     }
-    else if(pathName=="/signup"){
+    else if(pathName==="/signup"){
        setLogin(true)
     }
-    else if(pathName=="/forgotpassword"){
+    else if(pathName==="/forgotpassword"){
       setLogin(true)
     }
     else {
@@ -74,7 +71,7 @@ function App() {
           <Route path="/calender" element={<Calender toogle={toogle} />} />
           <Route path="/forms" element={<Forms toogle={toogle} />} />
           <Route path="/profile" element={<Profile toogle={toogle} logdetails={logdetails}  />} />
-          <Route path="/task" element={<Tasks toogle={toogle} setid={setId}/>} />
+          <Route path="/task" element={<Tasks toogle={toogle} />} />
           {data.map((row) => (
             <Route
               key={row.id} 

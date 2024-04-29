@@ -17,7 +17,7 @@ function Login({logdetails,setlogdetails}){
       console.log(logdetails)
       console.log(input.map((row)=>row.email).includes(logdetails.email))
     return(
-        <div className="bg-gray-50 flex justify-center  min-h-screen">
+        <div className="bg-gray-200 flex justify-center  min-h-screen">
         <div className=" grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 md:grid-cols-1 gap-4 max-w-xl md:max-w-2xl w-full">
         <div className="mt-4"> 
            <p className="text-black font-bold text-center text-3xl ">NICHI-IN SOFTWARE SOLUTIONS</p>
@@ -26,17 +26,17 @@ function Login({logdetails,setlogdetails}){
                 <h2 className="font-bold text-xl">Enter Your Details</h2>
             </div>
             <div className="mt-4">
-                <label className="font-bold italic">Email ID</label>
+                <label className="font-bold italic font-mono">Email ID</label>
                 <input type="email" placeholder="Enter Your E-MailId" name="email" className="text-gray-700 font-bold bg-white w-full px-3 py-2 rounded border" value={logdetails.email} onChange={handleChange} required/>
             </div>
             <div className="mt-4">
-                <label className="font-bold italic">Password</label>
+                <label className="font-bold italic font-mono">Password</label>
                 <input type="password" placeholder="Enter Your Password" name="password" className="text-gray-700 font-bold bg-white w-full px-3 py-2 rounded border" value={logdetails.password} onChange={handleChange} required/>
             </div>
             <div className="flex md:flex-row sm:flex-col  xs:flex-col justify-between mt-4  ">
                 <div className="flex">
                    <input type="checkbox" value="Remember Me"  className="mt-1" />
-                    <p className="mx-2 text-sm font-bold">Remember Me</p>
+                    <p className="mx-2 text-sm font-bold font-mono">Remember Me</p>
                 </div> 
                 <div className="">
                 <a href="/forgotpassword" className="underline underline-blue text-blue-500 font-bold text-sm">Forgot Password</a>

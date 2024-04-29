@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Input ,Button,Modal, Form, Input as AntInput} from "antd";
 
-function Tasks({toogle,setid}) {
+function Tasks({toogle}) {
     const [data, setData] = useState([]);
     const [search, setSearch] = useState("");
     const [modalVisible, setModalVisible] = useState(false);
@@ -23,9 +23,7 @@ function Tasks({toogle,setid}) {
             .then((res) => res.json())
             .then((data) => setData(data));
     }, []);
-     const handleId=(id)=>{
-        setid(id)
-     }
+
 
     const columns = [
         {
@@ -90,11 +88,7 @@ function Tasks({toogle,setid}) {
     setEdit(record);
 }
 
-  const handleEditChange = (items) => {
-    const name = items.target.name;
-    const value = items.target.value;
-    setEditdata(values => ({...values, [name]: value}));
-}
+
 const handleAddChange = (e) => {
     const { name, value } = e.target;
     setEditdata(values => ({...values, [name]: value}));
