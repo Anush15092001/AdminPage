@@ -33,8 +33,8 @@ function SignUp({input,handleChange}){
             .then(json=>console.log(json))
     }
     return(
-        <div className="bg-gray-200 min-h-screen flex justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 max-w-3xl w-full mt-5">
+        <div className="bg-gray-200 flex justify-center  min-h-screen">
+        <div className=" grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 md:grid-cols-1 gap-4 max-w-xl md:max-w-2xl w-full">
           <div className="bg-gray-50 shadow-xl rounded-lg p-8">
             <h3 className="text-black font-bold text-center text-3xl mb-8">
               NICHI-IN SOFTWARE SOLUTIONS
