@@ -24,7 +24,7 @@ ChartJS.register(
     ArcElement
   );
 
-function Dash(toogle){
+function Dash({toogle}){
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -111,7 +111,7 @@ function Dash(toogle){
       },
    }
     return (
-      <div className="m-2 mt-[100px] grid md:grid-cols-1 sm:grid-cols-1 ">
+      <div className={`${toogle ? "left-0" : "w-full"} m-2 mt-[100px] grid md:grid-cols-1 sm:grid-cols-1 bg-scroll`}>
       <div className="flex gap-2 flex-col md:flex-row sm:flex-col overflow-y-auto">
       <div className="w-screen h-[500px] border border-gray-500 shadow-lg rounded rounded-lg ">
       <Line className="flex justify-center mt-2"

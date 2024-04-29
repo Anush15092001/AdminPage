@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-function Login({input}){
-    const[logdetails,setlogdetails]=useState([])
+function Login({logdetails,setlogdetails}){
+    const[input,setInput]=useState([])
+    useEffect(() => {
+        fetch(`https://fakestoreapi.com/users`)
+            .then((res) => res.json())
+            .then((data) => setInput(data));
+    }, []);
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         setlogdetails(values => ({...values, [name]: value}))
       }
       console.log(logdetails)
+      console.log(input.map((row)=>row.email).includes(logdetails.email))
     return(
         <div className="bg-gray-50 flex justify-center  min-h-screen">
         <div className=" grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 md:grid-cols-1 gap-4 max-w-xl md:max-w-2xl w-full">
@@ -39,13 +45,13 @@ function Login({input}){
             <div className="mt-4 text-center">
                 <h2 className="font-bold text-sm">No Account ?<a href="/signup" className="underline underline-blue text-blue-500 text-sm  mx-2">Click Here</a></h2>
             </div>
-            {input.email===logdetails.email && input.password===logdetails.password ? 
+            {input.map((row)=>row.email).includes(logdetails.email) && input.map((row)=>row.password).includes(logdetails.password)? 
             <div className="mt-4 text-center">
-                 <p className="text-green-500">{input.email===logdetails.email && input.password===logdetails.password ? "The Email And Password Matched" :"Wrong Email or Password" }</p>
+                 <p className="text-green-500">{input.map((row)=>row.email).includes(logdetails.email) && input.map((row)=>row.password).includes(logdetails.password) ? "The Email And Password Matched" :"Wrong Email or Password" }</p>
             </div> : 
             ""
             }
-            {input.email===logdetails.email && input.password===logdetails.password ? 
+            {input.map((row)=>row.email).includes(logdetails.email) && input.map((row)=>row.password).includes(logdetails.password) ? 
             <div className="mt-4 ">
                 <Link to="/dashboard"><button className="bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg w-full h-10 mt-4">LOGIN</button></Link>
             </div>
@@ -58,12 +64,6 @@ function Login({input}){
         </div>
         </div>
         </div>
-        // <div className="grid h-screen bg-gray-200">
-        //     <h2 className="text-center">NICHI IN Software Solutions</h2>
-        //     <div className="grid grid-cols-4 flex justify-center place-items-center ">
-        //          <div className="col-span-4 "></div>
-        //     </div>
-        // </div>
     )
 }
 

@@ -16,7 +16,8 @@ module.exports = {
       'xxs': '350px', // min-width
       'sm':'680px',
       'md':'1280px',
-      'lg':'1800px'
+      'lg':'1800px',
+      'xl':'2000px'
     },
     outline: {
       blue: ['2px solid #0000ff', '1px'],

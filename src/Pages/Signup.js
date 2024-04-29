@@ -3,6 +3,35 @@ import { Link } from "react-router-dom";
 
 function SignUp({input,handleChange}){
     console.log(input)
+    const handleSubmit=()=>{
+      fetch('https://fakestoreapi.com/users',{
+            method:"POST",
+            body:JSON.stringify(
+                {
+                    email:input.email,
+                    username:'default',
+                    password:input.password,
+                    name:{
+                        firstname:input.fname,
+                        lastname:input.lname
+                    },
+                    address:{
+                        city:'default',
+                        street:'default',
+                        number:3,
+                        zipcode:'default',
+                        geolocation:{
+                            lat:'default',
+                            long:'default'
+                        }
+                    },
+                    phone:input.phone
+                }
+            )
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+    }
     return(
         <div className="bg-gray-50 min-h-screen flex justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 max-w-3xl w-full mt-5">
@@ -22,6 +51,8 @@ function SignUp({input,handleChange}){
                   name="fname"
                   className="text-gray-700 font-bold bg-white w-full px-3 py-2 rounded border"
                   required
+                  value={input.fname}
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -32,6 +63,8 @@ function SignUp({input,handleChange}){
                   name="lname"
                   className="text-gray-700 font-bold bg-white w-full px-3 py-2 rounded border"
                   required
+                  value={input.lname}
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -66,6 +99,8 @@ function SignUp({input,handleChange}){
                   name="phone"
                   className="text-gray-700 font-bold bg-white w-full px-3 py-2 rounded border"
                   required
+                  value={input.phone}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex items-center">
@@ -77,7 +112,7 @@ function SignUp({input,handleChange}){
                 <p className="text-gray-700 ml-2 text-sm">Remember Me</p>
               </div>
               <div>
-                <Link to={"/login"}>
+                <Link to={"/"} onClick={handleSubmit}>
                   <button className="bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg w-full h-10 mt-4">
                     SIGN UP
                   </button>
